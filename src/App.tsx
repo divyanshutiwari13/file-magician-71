@@ -1,27 +1,30 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ChatBox from "./components/ChatBox";
+import Home from "./pages/Home";
+import PdfToWord from "./pages/PdfToWord";
+import WordToPdf from "./pages/WordToPdf";
+import CompressImage from "./pages/CompressImage";
+import ResizeImage from "./pages/ResizeImage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <BrowserRouter>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/pdf-to-word" element={<PdfToWord />} />
+      <Route path="/word-to-pdf" element={<WordToPdf />} />
+      <Route path="/compress-image" element={<CompressImage />} />
+      <Route path="/resize-image" element={<ResizeImage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
+    <Footer />
+    <ChatBox />
+  </BrowserRouter>
 );
 
 export default App;
